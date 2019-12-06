@@ -13,7 +13,9 @@ code {
 }
 
 @import 'reset';
+@import 'variables';
 @import 'global';
 
 @import 'App';
 @import 'Transactions';
+@import 'Transaction';
