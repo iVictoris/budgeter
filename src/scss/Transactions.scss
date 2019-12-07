@@ -1,0 +1,28 @@
+.Transactions {
+  width: 80%;
+  border-top: $dark-gray 2px solid;
+  border-bottom: $dark-gray 2px solid;
+  border-left: $light-gray 2px solid;
+  border-right: $light-gray 2px solid;
+
+  &-heading {
+    display: flex;
+    border-bottom: 1px solid #000;
+    justify-content: space-between;
+    padding: 0 5%;
+
+    &>section {
+      width: 20%;
+      display: flex;
+    }
+  }
+
+  &-header {
+    font-size: 1.3rem;
+    font-weight: bolder;
+  }
+
+  &-list {
+    width: 100%;
+  }
+}
