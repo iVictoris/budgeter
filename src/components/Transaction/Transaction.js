@@ -6,7 +6,7 @@ const formatMoney = amount => {
 };
 
 const Transaction = ({
-  transactionID,
+  id,
   description,
   debit,
   credit,
@@ -14,7 +14,7 @@ const Transaction = ({
 }) => {
   return (
     <section className="Transaction">
-      <section className="Transaction-key">{transactionID}</section>
+      <section className="Transaction-key">{id}</section>
       <section className="Transaction-description">{description}</section>
       <section className="Transaction-debit">
         {formatMoney(debit || "0")}

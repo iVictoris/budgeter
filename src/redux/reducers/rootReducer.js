@@ -8,28 +8,28 @@ import {} from "../actions/actionCreators";
 const initialState = {
   transactions: {
     1: {
-      transactionID: 1,
+      id: 1,
       description: "Chipotle",
       credit: 5.4,
       category: "Food",
       voided: false
     },
     2: {
-      transactionID: 2,
+      id: 2,
       description: "Chipotle",
       credit: 8.5,
       category: "Food",
       voided: false
     },
     3: {
-      transactionID: 3,
+      id: 3,
       description: "Chipotle",
       credit: 12.24,
       category: "Food",
       voided: false
     },
     4: {
-      transactionID: 4,
+      id: 4,
       description: "Chipotle",
       credit: 50,
       category: "Food",
@@ -41,11 +41,12 @@ const initialState = {
 const transactions = (state = {}, action) => {
   switch (action.type) {
     case ADD_TRANSACTION:
-      return { ...state, [action.transaction.id]: action.transaction };
+      console.log(action);
+      return { ...state, [action.payload.id]: {...action.payload} };
     case UPDATE_TRANSACTION:
-        return {...state, [action.transaction.id] : action.transaction};
+        return {...state, [action.payload.id] : action.payload};
     case DELETE_TRANSACTION:
-      return {...state, [action.transaction.id]: {...state[action.id], voided: true}}
+      return {...state, [action.payload.id]: {...state[action.id], voided: true}}
     default:
       return state;
   }
