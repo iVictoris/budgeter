@@ -29,7 +29,7 @@ const ControlPanel = () => {
           <section className="Control-Panel-update">
             <section className="Control-Panel-form-container">
               <header>
-                <h3>Update Form</h3>
+                <h3>Update Transaction</h3>
               </header>
               <UpdateForm />
             </section>
