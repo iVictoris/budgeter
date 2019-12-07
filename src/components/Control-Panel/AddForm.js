@@ -36,7 +36,7 @@ const EnhancedAddForm = withFormik({
     category: Yup.string().required('Please enter a category for your transaction.')
   }),
   
-  handleSubmit(values, {props: {addTransaction}}) {
+  handleSubmit(values, {props: {addTransaction}, resetForm}) {
     // do something
     const id = Math.random().toString(36).substr(2, 9)
     const transaction = {
@@ -46,6 +46,7 @@ const EnhancedAddForm = withFormik({
     }
 
     addTransaction(transaction);
+    resetForm({description: '', debit: '', credit: '', category: ''})
     return;
   }
 })(AddForm);

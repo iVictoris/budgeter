@@ -27,8 +27,9 @@ const EnhancedLookupForm = withFormik({
     id: Yup.string().required("You must enter an ID to look up a transaction")
   }),
 
-  handleSubmit({ id }, { props: { lookupTransaction } }) {
+  handleSubmit({ id }, { props: { lookupTransaction }, resetForm }) {
     lookupTransaction(id);
+    resetForm({id: ''})
     return;
   }
 })(LookupForm);
