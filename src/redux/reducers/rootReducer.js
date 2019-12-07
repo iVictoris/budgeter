@@ -11,6 +11,7 @@ const initialState = {
     1: {
       id: 1,
       description: "Chipotle",
+      debit: 0,
       credit: 5.4,
       category: "Food",
       voided: false
@@ -18,6 +19,7 @@ const initialState = {
     2: {
       id: 2,
       description: "Chipotle",
+      debit: 0,
       credit: 8.5,
       category: "Food",
       voided: false
@@ -25,6 +27,7 @@ const initialState = {
     3: {
       id: 3,
       description: "Chipotle",
+      debit: 0,
       credit: 12.24,
       category: "Food",
       voided: false
@@ -32,6 +35,7 @@ const initialState = {
     4: {
       id: 4,
       description: "Chipotle",
+      debit: 0,
       credit: 50,
       category: "Food",
       voided: false
@@ -56,10 +60,10 @@ const transactions = (state = {}, action) => {
   }
 };
 
-const activeTransaction = (state, action) => {
+const activeTransaction = (state = {}, action) => {
   switch (action.type) {
     case LOOKUP_TRANSACTION:
-      const transaction = state.transactions[action.payload]
+      const transaction = state.transactions[action.payload];
       return transaction;
     default:
       return state;
