@@ -1,0 +1,17 @@
+.ModalContainer {
+  width: 100vw;
+  height: 100vh;
+
+  display: none;
+
+  &.show {
+    display: block;
+    & .Backdrop {
+      background: rgba(0, 0, 0, 0.75);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
