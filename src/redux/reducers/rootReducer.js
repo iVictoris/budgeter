@@ -43,29 +43,33 @@ const initialState = {
 const transactions = (state = {}, action) => {
   switch (action.type) {
     case ADD_TRANSACTION:
-      return { ...state, [action.payload.id]: {...action.payload} };
+      return { ...state, [action.payload.id]: { ...action.payload } };
     case UPDATE_TRANSACTION:
-        return {...state, [action.payload.id] : action.payload};
+      return { ...state, [action.payload.id]: action.payload };
     case DELETE_TRANSACTION:
-      return {...state, [action.payload.id]: {...state[action.id], voided: true}}
+      return {
+        ...state,
+        [action.payload.id]: { ...state[action.id], voided: true }
+      };
     default:
       return state;
   }
 };
 
-const lookups = (state = {}, action) => {
+const activeTransaction = (state, action) => {
   switch (action.type) {
     case LOOKUP_TRANSACTION:
-      return {...state, activeTransaction: state[action.payload]}
+      const transaction = state.transactions[action.payload]
+      return transaction;
     default:
       return state;
   }
-}
+};
 
 const rootReducer = (state = initialState, action) => {
   return {
     transactions: transactions(state.transactions, action),
-    lookups: lookups(state, action)
+    activeTransaction: activeTransaction(state, action)
   };
 };
 
