@@ -1,5 +1,7 @@
 import React from 'react'
 
+import {UpdateForm, AddForm, LookupForm} from './';
+
 const ControlPanel = () => {
   return (
     <section className="Control-Panel">
@@ -13,7 +15,7 @@ const ControlPanel = () => {
               <header>
                 <h3>Adding a Transaction</h3>
               </header>
-              <EnhancedAddForm />
+              <AddForm />
             </section>
           </section>
           <section className="Control-Panel-lookup">
@@ -21,7 +23,7 @@ const ControlPanel = () => {
               <header>
                 <h3>Lookup a Transaction</h3>
               </header>
-              <EnhancedLookupForm />
+              <LookupForm />
             </section>
           </section>
           <section className="Control-Panel-update">
@@ -29,7 +31,7 @@ const ControlPanel = () => {
               <header>
                 <h3>Update Form</h3>
               </header>
-              <EnhancedUpdateForm />
+              <UpdateForm />
             </section>
           </section>
           <section className="Control-Panel-delete"></section>
