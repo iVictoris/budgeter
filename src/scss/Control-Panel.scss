@@ -3,6 +3,12 @@
   background: $dark-gray;
   border-radius: 10px;
 
+  .error {
+    width: 100%;
+    color: red;
+    margin: 1.5% 0 0.75% 0;
+  }
+
   &-header {
     padding: 1.5%;
     font-size: 2rem;
@@ -37,7 +43,7 @@
 
     input,
     label {
-      margin-bottom: 3%;
+      margin-top: 1.75%;
       display: flex;
     }
 

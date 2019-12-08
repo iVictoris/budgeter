@@ -1,43 +1,22 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
 import Transaction from "./Transaction";
 
-const txs = [
-  {
-    transactionID: 1,
-    description: 'Chipotle',
-    credit: 5.40,
-    category: 'Food'
-  },
-  {
-    transactionID: 2,
-    description: 'Chipotle',
-    credit: 8.5,
-    category: 'Food'
-  },
-  {
-    transactionID: 3,
-    description: 'Chipotle',
-    credit: 12.24,
-    category: 'Food'
-  },
-  {
-    transactionID: 4,
-    description: 'Chipotle',
-    credit: 50,
-    category: 'Food'
-  },
-]
+const TransactionsList = ({transactions}) => {
 
-const TransactionsList = () => {
-
-  const transactions = txs.map(item => <Transaction {...item} key={item.transactionID} />)
+  const transactionsList = Object.entries(transactions).map(([id, transaction]) => <Transaction {...transaction} key={id} />)
 
   return (
     <section className="Transactions-list">
-    {!!transactions.length && transactions}
+    {!!transactionsList.length && transactionsList}
   </section>
   )
 }
 
-export default TransactionsList
+const mapStateToProps = ({transactions}) => ({
+  transactions
+})
+
+
+export default connect(mapStateToProps, null)(TransactionsList);

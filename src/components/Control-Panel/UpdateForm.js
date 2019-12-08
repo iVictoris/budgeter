@@ -1,35 +1,35 @@
-import React from 'react'
-import { Form, Field, withFormik } from "formik";
+import React from "react";
+import { connect } from "react-redux";
 
-const UpdateForm = ({ id }) => {
+import { useFormik, Form, Field, withFormik } from "formik";
+import * as Yup from "yup";
+
+import { updateTransaction } from "../../redux/actions/actionCreators";
+const UpdateForm = ({errors, touched}) => {
   // query for transaction somewhere...
-
-  const transaction = {
-    transactionID: 3,
-    description: "Chipotle",
-    credit: 12.24,
-    category: "Food",
-    debit: 0
-  };
-
-  const {transactionID, description, credit, category, debit} = transaction
 
   return (
     <Form>
-      <label htmlFor="update-id">ID</label>
-      <Field id="update-id" name="id" type="text" value={transactionID} disabled />
+      <label htmlFor="id">ID</label>
+      <Field id="id" name="id" type="text" disabled={true} />
 
-      <label htmlFor="update-description">Description: </label>
-      <Field id="update-description" name="description" type="text" value={description}/>
+      <label htmlFor="description">Description: </label>
+      <Field name="description" type="text" />
+      {touched.description && errors.description && (
+        <p className="error">{errors.description}</p>
+      )}
 
-      <label htmlFor="update-debit">Debit: </label>
-      <Field id="update-debit" name="debit" type="text" value={debit}/>
+      <label htmlFor="debit">Debit: </label>
+      <Field name="debit" type="text" />
 
-      <label htmlFor="update-credit">Credit</label>
-      <Field id="update-credit" name="credit" type="text" value={credit}/>
+      <label htmlFor="credit">Credit</label>
+      <Field name="credit" type="text" />
 
-      <label htmlFor="update-category">Category: </label>
-      <Field id="update-category" name="category" type="text" value={category}/>
+      <label htmlFor="category">Category: </label>
+      <Field name="category" type="text" />
+      {touched.category && errors.category && (
+        <p className="error">{errors.category}</p>
+      )}
 
       <button type="submit">Update Transaction</button>
     </Form>
@@ -37,13 +37,33 @@ const UpdateForm = ({ id }) => {
 };
 
 const EnhancedUpdateForm = withFormik({
-  mapPropsToValues({ id, description, debit, credit, category }) {
-    return { id, description, debit, credit, category };
+  enableReinitialize: true,
+  mapPropsToValues(props) {
+    const {activeTransaction: {
+      id, description, debit, credit, category
+    }} = props;
+    return {id: id || '', description: description || '', debit: debit || '', credit: credit || '', category: category || ''};
   },
+  validationSchema: Yup.object().shape({
+    description: Yup.string().required(
+      "To update this transaction you need to provide a description"
+    ),
+    category: Yup.string().required(
+      "To update this transaction you need to provide a category"
+    )
+  }),
 
-  handleSubmit(values, formikBag) {
+  handleSubmit(values, { props: {updateTransaction}, setValues }) {
+    const transaction = { ...values };
+    updateTransaction(transaction);
     return;
   }
 })(UpdateForm);
 
-export default EnhancedUpdateForm
+const mapStateToProps = ({ activeTransaction }) => ({
+  activeTransaction
+});
+
+export default connect(mapStateToProps, { updateTransaction })(
+  EnhancedUpdateForm
+);
