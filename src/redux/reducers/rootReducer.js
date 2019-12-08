@@ -39,6 +39,40 @@ const initialState = {
       credit: 50,
       category: "Food",
       voided: false
+    },
+    transactions: {
+      5: {
+        id: 5,
+        description: "Work - Direct Deposit",
+        debit: 100,
+        credit: 0,
+        category: "Labor",
+        voided: false
+      },
+      6: {
+        id: 6,
+        description: "Work - Direct Deposit",
+        debit: 200,
+        credit: 0,
+        category: "Labor",
+        voided: false
+      },
+      7: {
+        id: 7,
+        description: "Work - Direct Deposit",
+        debit: 250,
+        credit: 0,
+        category: "Labor",
+        voided: false
+      },
+      8: {
+        id: 8,
+        description: "Work - Direct Deposit",
+        debit: 400,
+        credit: 0,
+        category: "Labor",
+        voided: false
+      }
     }
   },
   activeTransaction: null
