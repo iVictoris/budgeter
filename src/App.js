@@ -12,6 +12,12 @@ function App() {
       {/* <ModalContainer defaultModalState={true}>
         <SuccessModal text={'Sucess! Transaction has been created.'}/>
       </ModalContainer> */}
+      <section className="CashFlowStatement">
+        <section className="Income"></section>
+        <section className="Expenses"></section>
+        <section className="Asset"></section>
+        <section className="Liabilities"></section>
+      </section>
     </div>
   );
 }
