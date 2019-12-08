@@ -13,10 +13,18 @@ function App() {
         <SuccessModal text={'Sucess! Transaction has been created.'}/>
       </ModalContainer> */}
       <section className="CashFlowStatement">
-        <section className="Income"></section>
-        <section className="Expenses"></section>
-        <section className="Asset"></section>
-        <section className="Liabilities"></section>
+        <section className="IncomeList">
+          <section className="Income"></section>
+        </section>
+        <section className="ExpenseList">
+          <section className="Expense"></section>
+        </section>
+        <section className="AssetList">
+          <section className="Asset"></section>
+        </section>
+        <section className="LiabilityList">
+          <section className="Liability"></section>
+        </section>
       </section>
     </div>
   );
