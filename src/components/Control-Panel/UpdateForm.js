@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { useFormik, Form, Field, withFormik } from "formik";
+import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 
 import { updateTransaction } from "../../redux/actions/actionCreators";
-const UpdateForm = ({errors, touched}) => {
+const UpdateForm = ({ errors, touched }) => {
   // query for transaction somewhere...
 
   return (
@@ -30,7 +30,6 @@ const UpdateForm = ({errors, touched}) => {
       {touched.category && errors.category && (
         <p className="error">{errors.category}</p>
       )}
-
       <button type="submit">Update Transaction</button>
     </Form>
   );
@@ -39,10 +38,16 @@ const UpdateForm = ({errors, touched}) => {
 const EnhancedUpdateForm = withFormik({
   enableReinitialize: true,
   mapPropsToValues(props) {
-    const {activeTransaction: {
-      id, description, debit, credit, category
-    }} = props;
-    return {id: id || '', description: description || '', debit: debit || '', credit: credit || '', category: category || ''};
+    const {
+      activeTransaction: { id, description, debit, credit, category }
+    } = props;
+    return {
+      id: id || "",
+      description: description || "",
+      debit: debit || "",
+      credit: credit || "",
+      category: category || ""
+    };
   },
   validationSchema: Yup.object().shape({
     description: Yup.string().required(
@@ -53,7 +58,7 @@ const EnhancedUpdateForm = withFormik({
     )
   }),
 
-  handleSubmit(values, { props: {updateTransaction}, setValues }) {
+  handleSubmit(values, { props: { updateTransaction }, setValues }) {
     const transaction = { ...values };
     updateTransaction(transaction);
     return;
